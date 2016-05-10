@@ -1,11 +1,14 @@
 package com.example.patrick.studienplaner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Patrick on 09.05.2016.
  */
 public class Termin {
 
-    private String titel, uhrzeit, ort;
+    public String titel, uhrzeit, ort;
 
     public Termin(String titel, String ort, String uhrzeit) {
         this.titel = titel;
@@ -36,4 +39,9 @@ public class Termin {
     public void setOrt(String ort) {
         this.ort = ort;
     }
+
+    private List<Termin> termine;
+
+
+
 }
