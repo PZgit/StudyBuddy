@@ -1,4 +1,4 @@
-package com.example.patrick.studienplaner;
+package com.example.patrick.studienplaner.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
