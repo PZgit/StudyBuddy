@@ -36,11 +36,11 @@ public class Lerngruppen_Activity extends Activity{
         rv_lerngruppen.setLayoutManager(llm);
         rv_lerngruppen.setHasFixedSize(true);
 
-        initializeData();
+        initializeDataTermin();
         initializeAdapter();
     }
 
-    private void initializeData() {
+    private void initializeDataTermin() {
         termine = new ArrayList<>();
         termine.add(new Termin("Lerntermin111", "12Uhr", "SHL H.1.1"));
         termine.add(new Termin("Lerntermin222", "4Uhr", "Münzstr. 15"));

@@ -20,6 +20,7 @@ public class LerngruppenRecyclerViewAdapter extends RecyclerView.Adapter<Lerngru
         this.termine = termine;
     }
 
+
     public static class TermineViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView titel;
@@ -46,7 +47,7 @@ public class LerngruppenRecyclerViewAdapter extends RecyclerView.Adapter<Lerngru
     }
     @Override
     public void onBindViewHolder(TermineViewHolder termineViewHolder, int i) {
-        termineViewHolder.titel.setText(termine.get(i).titel);
+        termineViewHolder.titel.setText((termine.get(i).titel));
         termineViewHolder.uhrzeit.setText(termine.get(i).uhrzeit);
         termineViewHolder.ort.setText(termine.get(i).ort);
     }

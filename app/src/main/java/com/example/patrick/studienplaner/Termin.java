@@ -16,32 +16,5 @@ public class Termin {
         this.uhrzeit = uhrzeit;
     }
 
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public String getUhrzeit() {
-        return uhrzeit;
-    }
-
-    public void setUhrzeit(String uhrzeit) {
-        this.uhrzeit = uhrzeit;
-    }
-
-    public String getOrt() {
-        return ort;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
-    private List<Termin> termine;
-
-
 
 }
