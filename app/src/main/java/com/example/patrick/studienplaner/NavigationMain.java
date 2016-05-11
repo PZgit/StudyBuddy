@@ -1,5 +1,6 @@
 package com.example.patrick.studienplaner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -73,7 +74,8 @@ public class NavigationMain extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_slot1) {
-            // Handle the camera action
+            Intent intent = new Intent(this, Lerngruppen_Activity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slot2) {
 
         } else if (id == R.id.nav_slot3) {

@@ -6,7 +6,10 @@ package com.example.patrick.studienplaner;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +19,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lerngruppen_Activity extends Activity {
+public class Lerngruppen_Activity extends Activity{
 
     private List<Termin> termine;
     private RecyclerView rv_lerngruppen;
@@ -24,7 +27,7 @@ public class Lerngruppen_Activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Intent intent=getIntent();
         setContentView(R.layout.rv_lerngruppen);
 
         rv_lerngruppen=(RecyclerView)findViewById(R.id.rv_lerngruppen);
