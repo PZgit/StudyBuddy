@@ -1,13 +1,12 @@
-package com.example.patrick.studienplaner;
+package com.example.patrick.studienplaner.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Patrick on 09.05.2016.
  */
-public class Termin {
+public class Termin extends LerngruppenCardContent{
 
+    public final static int VIEW_TYPE = 0;
     public String titel, uhrzeit, ort;
 
     public Termin(String titel, String ort, String uhrzeit) {
@@ -17,4 +16,8 @@ public class Termin {
     }
 
 
+    @Override
+    public int getType() {
+        return VIEW_TYPE;
+    }
 }

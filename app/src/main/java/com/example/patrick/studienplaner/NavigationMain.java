@@ -2,9 +2,6 @@ package com.example.patrick.studienplaner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -74,7 +71,7 @@ public class NavigationMain extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_slot1) {
-            Intent intent = new Intent(this, Lerngruppen_Activity.class);
+            Intent intent = new Intent(this, LerngruppenDetailActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slot2) {
 

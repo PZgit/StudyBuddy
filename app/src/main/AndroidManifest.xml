@@ -20,8 +20,10 @@
 
         </activity>
         <activity
-                android:name="com.example.patrick.studienplaner.Lerngruppen_Activity">
+                android:name=".LerngruppenDetailActivity">
         </activity>
+
+
 
     </application>
 

@@ -1,5 +1,6 @@
 package com.example.patrick.studienplaner;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,52 +8,69 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.patrick.studienplaner.LG_Detail_ViewHolder.LGCardContentViewHolder;
+import com.example.patrick.studienplaner.LG_Detail_ViewHolder.MitgliedViewHolder;
+import com.example.patrick.studienplaner.LG_Detail_ViewHolder.TerminInviteViewHolder;
+import com.example.patrick.studienplaner.LG_Detail_ViewHolder.TerminViewHolder;
+import com.example.patrick.studienplaner.model.LerngruppenCardContent;
+import com.example.patrick.studienplaner.model.Mitglied;
+import com.example.patrick.studienplaner.model.Termin;
+import com.example.patrick.studienplaner.model.TerminInvite;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Patrick on 10.05.2016.
  */
-public class LerngruppenRecyclerViewAdapter extends RecyclerView.Adapter<LerngruppenRecyclerViewAdapter.TermineViewHolder>{
+public class LerngruppenRecyclerViewAdapter extends RecyclerView.Adapter<LGCardContentViewHolder<LerngruppenCardContent>>{
 
-    List<Termin> termine;
+    public final Context context;
+    private List<LerngruppenCardContent> LGDetailList;
 
-    LerngruppenRecyclerViewAdapter(List<Termin> termine){
-        this.termine = termine;
+    public LerngruppenRecyclerViewAdapter(final Context context, final List<LerngruppenCardContent> LGDetailList){
+        this.context = context;
+        this.LGDetailList = new ArrayList<>(LGDetailList);
     }
 
 
-    public static class TermineViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
-        TextView titel;
-        TextView uhrzeit;
-        TextView ort;
+    @Override
+    public int getItemCount() {
 
-        TermineViewHolder(View itemView) {
-            super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            titel = (TextView)itemView.findViewById(R.id.titel);
-            uhrzeit = (TextView)itemView.findViewById(R.id.uhrzeit);
-            ort = (TextView)itemView.findViewById(R.id.ort);
+        return LGDetailList.size();
+    }
+
+    @Override
+    public LGCardContentViewHolder<LerngruppenCardContent> onCreateViewHolder(ViewGroup parent, final int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = null;
+
+        switch (viewType) {
+            case Termin.VIEW_TYPE:
+                view = inflater.inflate(R.layout.cv_termine, null);
+                return new TerminViewHolder(context, view);
+            case TerminInvite.VIEW_TYPE:
+                view = inflater.inflate(R.layout.cv_termine_invite, null);
+                return new TerminInviteViewHolder(context, view);
+            case Mitglied.VIEW_TYPE:
+                view = inflater.inflate(R.layout.cv_mitglieder, null);
+                return new MitgliedViewHolder(context, view);
+            default:
+                throw new IllegalArgumentException("The viewType " + viewType + " is unknown");
         }
     }
     @Override
-    public int getItemCount() {
-        return termine.size();
-    }
-    @Override
-    public TermineViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cv_termine, viewGroup, false);
-        TermineViewHolder tvh = new TermineViewHolder(v);
-        return tvh;
-    }
-    @Override
-    public void onBindViewHolder(TermineViewHolder termineViewHolder, int i) {
-        termineViewHolder.titel.setText((termine.get(i).titel));
-        termineViewHolder.uhrzeit.setText(termine.get(i).uhrzeit);
-        termineViewHolder.ort.setText(termine.get(i).ort);
+    public void onBindViewHolder(final LGCardContentViewHolder<LerngruppenCardContent> holder, final int position) {
+            holder.setData(LGDetailList.get(position));
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
+    @Override
+    public int getItemViewType(final int position) {
+        return LGDetailList.get(position).getType();
+    }
+
 }
