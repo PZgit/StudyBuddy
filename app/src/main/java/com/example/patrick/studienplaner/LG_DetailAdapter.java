@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.patrick.studienplaner.LG_Detail_ViewHolder.LGCardContentViewHolder;
+import com.example.patrick.studienplaner.LG_Detail_ViewHolder.LG_DetailViewHolder;
 import com.example.patrick.studienplaner.LG_Detail_ViewHolder.MitgliedViewHolder;
 import com.example.patrick.studienplaner.LG_Detail_ViewHolder.TerminInviteViewHolder;
 import com.example.patrick.studienplaner.LG_Detail_ViewHolder.TerminViewHolder;
@@ -21,12 +21,12 @@ import java.util.List;
 /**
  * Created by Patrick on 10.05.2016.
  */
-public class LG_DetailRecyclerViewAdapter extends RecyclerView.Adapter<LGCardContentViewHolder<LG_DetailCardContent>>{
+public class LG_DetailAdapter extends RecyclerView.Adapter<LG_DetailViewHolder<LG_DetailCardContent>>{
 
     public final Context context;
     private List<LG_DetailCardContent> LGDetailList;
 
-    public LG_DetailRecyclerViewAdapter(final Context context, final List<LG_DetailCardContent> LGDetailList){
+    public LG_DetailAdapter(final Context context, final List<LG_DetailCardContent> LGDetailList){
         this.context = context;
         this.LGDetailList = new ArrayList<>(LGDetailList);
     }
@@ -39,7 +39,7 @@ public class LG_DetailRecyclerViewAdapter extends RecyclerView.Adapter<LGCardCon
     }
 
     @Override
-    public LGCardContentViewHolder<LG_DetailCardContent> onCreateViewHolder(ViewGroup parent, final int viewType) {
+    public LG_DetailViewHolder<LG_DetailCardContent> onCreateViewHolder(ViewGroup parent, final int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = null;
 
@@ -58,7 +58,7 @@ public class LG_DetailRecyclerViewAdapter extends RecyclerView.Adapter<LGCardCon
         }
     }
     @Override
-    public void onBindViewHolder(final LGCardContentViewHolder<LG_DetailCardContent> holder, final int position) {
+    public void onBindViewHolder(final LG_DetailViewHolder<LG_DetailCardContent> holder, final int position) {
             holder.setData(LGDetailList.get(position));
     }
     @Override

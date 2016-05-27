@@ -74,6 +74,8 @@ public class NavigationMain extends AppCompatActivity
             Intent intent = new Intent(this, LG_DetailActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slot2) {
+            Intent intent = new Intent(this, LerngruppenActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slot3) {
 

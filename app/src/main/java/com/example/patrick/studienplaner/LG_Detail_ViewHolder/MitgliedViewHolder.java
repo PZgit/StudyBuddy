@@ -11,7 +11,7 @@ import com.example.patrick.studienplaner.model.LG_DetailModels.Mitglied;
 /**
  * Created by Patrick on 25.05.2016.
  */
-public class MitgliedViewHolder<T extends LG_DetailCardContent> extends LGCardContentViewHolder<Mitglied>{
+public class MitgliedViewHolder<T extends LG_DetailCardContent> extends LG_DetailViewHolder<Mitglied> {
     private final Context context;
     private final TextView name;
 

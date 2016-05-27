@@ -22,6 +22,9 @@
         <activity
                 android:name=".LG_DetailActivity">
         </activity>
+        <activity
+            android:name=".LerngruppenActivity">
+        </activity>
 
 
 

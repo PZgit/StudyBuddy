@@ -11,7 +11,7 @@ import com.example.patrick.studienplaner.model.LG_DetailModels.TerminInvite;
 /**
  * Created by Patrick on 25.05.2016.
  */
-public class TerminInviteViewHolder<T extends LG_DetailCardContent> extends LGCardContentViewHolder<TerminInvite> {
+public class TerminInviteViewHolder<T extends LG_DetailCardContent> extends LG_DetailViewHolder<TerminInvite> {
     private final Context context;
     private final TextView titel, uhrzeit, ort;
 

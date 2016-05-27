@@ -1,22 +1,22 @@
 package com.example.patrick.studienplaner;
 
-/**
- * Created by Patrick on 09.05.2016.
- */
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
-import com.example.patrick.studienplaner.model.LG_DetailModels.LG_DetailCardContent;
+import com.example.patrick.studienplaner.model.LerngruppenModels.LerngruppenCardContent;
 
 import java.util.List;
 
-public class LG_DetailActivity extends Activity{
+/**
+ * Created by Patrick on 27.05.2016.
+ */
+public class LerngruppenActivity extends Activity {
 
-    private List<LG_DetailCardContent> LGDetailList = LG_DetailCardContent.createData();
-    private LG_DetailAdapter adapter;
+    private List<LerngruppenCardContent> LerngruppenList = LerngruppenCardContent.createData();
+    private LerngruppenAdapter adapter;
     private RecyclerView rv_lerngruppen;
 
     @Override
@@ -29,7 +29,7 @@ public class LG_DetailActivity extends Activity{
         //llm.setOrientation(LinearLayout.VERTICAL);
         rv_lerngruppen.setLayoutManager(llm);
 
-        adapter = new LG_DetailAdapter(getBaseContext(), LGDetailList);
+        adapter = new LerngruppenAdapter(getBaseContext(), LerngruppenList);
 
         rv_lerngruppen.setAdapter(adapter);
 

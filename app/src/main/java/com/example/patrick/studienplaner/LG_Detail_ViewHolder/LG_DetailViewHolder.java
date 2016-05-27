@@ -8,9 +8,9 @@ import com.example.patrick.studienplaner.model.LG_DetailModels.LG_DetailCardCont
 /**
  * Created by Patrick on 25.05.2016.
  */
-public abstract class LGCardContentViewHolder<T extends LG_DetailCardContent> extends RecyclerView.ViewHolder{
+public abstract class LG_DetailViewHolder<T extends LG_DetailCardContent> extends RecyclerView.ViewHolder{
 
-    public LGCardContentViewHolder(final View itemView) {
+    public LG_DetailViewHolder(final View itemView) {
         super(itemView);
     }
 
