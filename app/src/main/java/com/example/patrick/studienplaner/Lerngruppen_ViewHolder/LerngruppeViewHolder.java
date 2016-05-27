@@ -18,7 +18,7 @@ public class LerngruppeViewHolder <T extends LerngruppenCardContent> extends LG_
     public LerngruppeViewHolder(final Context context, final View view) {
         super(view);
         this.context = context;
-        this.name= (TextView) view.findViewById(R.id.member_name);
+        this.name= (TextView) view.findViewById(R.id.name);
 
     }
 
