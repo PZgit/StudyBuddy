@@ -5,13 +5,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.patrick.studienplaner.R;
-import com.example.patrick.studienplaner.model.LerngruppenCardContent;
-import com.example.patrick.studienplaner.model.TerminInvite;
+import com.example.patrick.studienplaner.model.LG_DetailModels.LG_DetailCardContent;
+import com.example.patrick.studienplaner.model.LG_DetailModels.TerminInvite;
 
 /**
  * Created by Patrick on 25.05.2016.
  */
-public class TerminInviteViewHolder<T extends LerngruppenCardContent> extends LGCardContentViewHolder<TerminInvite> {
+public class TerminInviteViewHolder<T extends LG_DetailCardContent> extends LGCardContentViewHolder<TerminInvite> {
     private final Context context;
     private final TextView titel, uhrzeit, ort;
 

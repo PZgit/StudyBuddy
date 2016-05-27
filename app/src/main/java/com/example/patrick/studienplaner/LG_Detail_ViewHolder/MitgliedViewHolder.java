@@ -5,13 +5,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.patrick.studienplaner.R;
-import com.example.patrick.studienplaner.model.LerngruppenCardContent;
-import com.example.patrick.studienplaner.model.Mitglied;
+import com.example.patrick.studienplaner.model.LG_DetailModels.LG_DetailCardContent;
+import com.example.patrick.studienplaner.model.LG_DetailModels.Mitglied;
 
 /**
  * Created by Patrick on 25.05.2016.
  */
-public class MitgliedViewHolder<T extends LerngruppenCardContent> extends LGCardContentViewHolder<Mitglied>{
+public class MitgliedViewHolder<T extends LG_DetailCardContent> extends LGCardContentViewHolder<Mitglied>{
     private final Context context;
     private final TextView name;
 

@@ -71,7 +71,7 @@ public class NavigationMain extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_slot1) {
-            Intent intent = new Intent(this, LerngruppenDetailActivity.class);
+            Intent intent = new Intent(this, LG_DetailActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slot2) {
 

@@ -1,4 +1,4 @@
-package com.example.patrick.studienplaner.model;
+package com.example.patrick.studienplaner.model.LG_DetailModels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,15 +6,15 @@ import java.util.List;
 /**
  * Created by Patrick on 19.05.2016.
  */
-public abstract class LerngruppenCardContent {
+public abstract class LG_DetailCardContent {
 
     public String name;
 
     public abstract int getType();
 
-    public static List<LerngruppenCardContent> createData() {
+    public static List<LG_DetailCardContent> createData() {
 
-        List<LerngruppenCardContent> LGDetailList = new ArrayList<LerngruppenCardContent>();
+        List<LG_DetailCardContent> LGDetailList = new ArrayList<LG_DetailCardContent>();
 
         LGDetailList.add(new Termin("Lerntermin111", "12Uhr", "SHL H.1.1"));
         LGDetailList.add(new Termin("Lerntermin222", "12Uhr", "SHL H.1.1"));

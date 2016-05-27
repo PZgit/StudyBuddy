@@ -20,7 +20,7 @@
 
         </activity>
         <activity
-                android:name=".LerngruppenDetailActivity">
+                android:name=".LG_DetailActivity">
         </activity>
 
 

@@ -1,9 +1,9 @@
-package com.example.patrick.studienplaner.model;
+package com.example.patrick.studienplaner.model.LG_DetailModels;
 
 /**
  * Created by Patrick on 24.05.2016.
  */
-public class TerminInvite extends LerngruppenCardContent {
+public class TerminInvite extends LG_DetailCardContent {
 
 
     public final static int VIEW_TYPE = 1;

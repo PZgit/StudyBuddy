@@ -1,19 +1,17 @@
 package com.example.patrick.studienplaner.LG_Detail_ViewHolder;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.patrick.studienplaner.*;
-import com.example.patrick.studienplaner.model.LerngruppenCardContent;
-import com.example.patrick.studienplaner.model.Termin;
+import com.example.patrick.studienplaner.model.LG_DetailModels.LG_DetailCardContent;
+import com.example.patrick.studienplaner.model.LG_DetailModels.Termin;
 
 /**
  * Created by Patrick on 25.05.2016.
  */
-public class TerminViewHolder<T extends LerngruppenCardContent> extends LGCardContentViewHolder<Termin> {
+public class TerminViewHolder<T extends LG_DetailCardContent> extends LGCardContentViewHolder<Termin> {
 
     private final Context context;
     private final TextView titel, uhrzeit, ort;
