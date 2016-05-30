@@ -10,20 +10,15 @@ import com.example.patrick.studienplaner.model.CalendarDayContent;
 
 import java.util.List;
 
-import de.fhws.studienplaner.ItemFragment.OnListFragmentInteractionListener;
-import de.fhws.studienplaner.dummy.DummyContent.DummyItem;
+import com.example.patrick.studienplaner.CalendarDayFragment.OnListFragmentInteractionListener;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyCalendarDayRecyclerViewAdapter extends RecyclerView.Adapter<MyCalendarDayRecyclerViewAdapter.ViewHolder> {
 
-    private final List<CalendarDayContent> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final List<CalendarDayContent.CalendarDayItem> mValues;
+    private final CalendarDayFragment.OnListFragmentInteractionListener mListener;
 
-    public MyCalendarDayRecyclerViewAdapter(List<CalendarDayContent> items, OnListFragmentInteractionListener listener) {
+    public MyCalendarDayRecyclerViewAdapter(List<CalendarDayContent.CalendarDayItem> items, CalendarDayFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -37,20 +32,7 @@ public class MyCalendarDayRecyclerViewAdapter extends RecyclerView.Adapter<MyCal
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+        holder.setData(mValues.get(position), mListener);
     }
 
     @Override
@@ -59,16 +41,27 @@ public class MyCalendarDayRecyclerViewAdapter extends RecyclerView.Adapter<MyCal
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        private final View view;
         public CalendarDayContent mItem;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view;
+            this.view = view;
             mIdView = (TextView) view.findViewById(R.id.id);
             mContentView = (TextView) view.findViewById(R.id.content);
+        }
+
+        public void setData(final CalendarDayContent.CalendarDayItem item, final CalendarDayFragment.OnListFragmentInteractionListener mListener){
+            mIdView.setText(item.id);
+            mContentView.setText(item.content);
+            this.view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onListFragmentInteraction(item);
+                }
+            });
         }
 
         @Override

@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.patrick.studienplaner.model.CalendarDayContent;
+
 public class NavigationMain extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CalendarDayFragment.OnListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,4 +95,6 @@ public class NavigationMain extends AppCompatActivity
         }
         return true;
     }
+
+    public void onListFragmentInteraction(CalendarDayContent content){}
 }

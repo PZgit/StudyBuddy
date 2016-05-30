@@ -41,7 +41,7 @@ public class CalendarDayContent {
      */
     public static final Map<String, CalendarDayItem> ITEM_MAP = new HashMap<String, CalendarDayItem>();
 
-    private static final int COUNT = 25;
+    private static final int COUNT = 24;
 
     static {
         // Add some sample items.
@@ -56,7 +56,7 @@ public class CalendarDayContent {
     }
 
     private static CalendarDayItem createItem(int position) {
-        return new CalendarDayItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new CalendarDayItem(String.valueOf(position), position + ":00", makeDetails(position));
     }
 
     private static String makeDetails(int position) {
