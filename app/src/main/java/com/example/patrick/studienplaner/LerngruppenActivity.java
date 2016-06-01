@@ -1,11 +1,16 @@
 package com.example.patrick.studienplaner;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.patrick.studienplaner.Dialogs.EventDialogFragment;
+import com.example.patrick.studienplaner.Dialogs.LerngruppeDialogFragment;
 import com.example.patrick.studienplaner.model.LerngruppenModels.LerngruppenCardContent;
 
 import java.util.List;
@@ -32,6 +37,13 @@ public class LerngruppenActivity extends Activity {
         adapter = new LerngruppenAdapter(getBaseContext(), LerngruppenList);
 
         rv_lerngruppen.setAdapter(adapter);
+
+
+    }
+    public void showDialog(View view){
+        FragmentManager manager = getFragmentManager();
+        LerngruppeDialogFragment lerngruppeErstellenDialog = new LerngruppeDialogFragment();
+        lerngruppeErstellenDialog.show(manager, "Lerngruppe erstellen");
 
     }
 
