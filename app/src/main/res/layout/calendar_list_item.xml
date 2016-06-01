@@ -14,12 +14,10 @@
         />
 
 
-    <TextView
+    <View
         android:id="@+id/line"
-        style="?android:attr/listSeparatorTextViewStyle"
         android:paddingTop="5dip"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/connect_help"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#b6b6b6" />

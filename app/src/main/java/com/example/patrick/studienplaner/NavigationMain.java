@@ -17,8 +17,10 @@ import android.view.View;
 
 import com.example.patrick.studienplaner.Dialogs.EventDialogFragment;
 
+import com.example.patrick.studienplaner.model.CalendarDayContent;
+
 public class NavigationMain extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CalendarDayFragment.OnListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,4 +117,6 @@ public class NavigationMain extends AppCompatActivity
         eventErstellenDialog.show(manager, "Event erstellen");
 
     }
+
+    public void onListFragmentInteraction(CalendarDayContent content){}
 }
