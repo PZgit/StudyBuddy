@@ -33,6 +33,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.OkHttpClient;
+
 /**
  * Created by Julian on 22.05.2016.
  */
@@ -44,9 +46,6 @@ public class AppController extends AppCompatActivity{
 
     protected AppController(Context context) {
         mCtx = context;
-        mRequestQueue = getRequestQueue();
-
-
     }
 
     public static synchronized AppController getInstance(Context context) {
@@ -56,7 +55,7 @@ public class AppController extends AppCompatActivity{
         return mInstance;
     }
 
-    public RequestQueue getRequestQueue() {
+    /*public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             HurlStack hurlStack = new HurlStack() {
                 @Override
@@ -85,6 +84,7 @@ public class AppController extends AppCompatActivity{
     public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
     }
+    */
 
     private TrustManager[] getWrappedTrustManagers(TrustManager[] trustManagers) {
         final X509TrustManager originalTrustManager = (X509TrustManager) trustManagers[0];
@@ -113,13 +113,15 @@ public class AppController extends AppCompatActivity{
 
    private SSLSocketFactory getSSLSocketFactory()
             throws CertificateException, KeyStoreException, IOException, NoSuchAlgorithmException, KeyManagementException {
+
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         InputStream caInput = getResources().openRawResource(R.raw.server); // this cert file stored in \app\src\main\res\raw folder path
 
         Certificate ca = cf.generateCertificate(caInput);
         caInput.close();
 
-        KeyStore keyStore = KeyStore.getInstance("BKS");
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
         keyStore.load(null, null);
         keyStore.setCertificateEntry("ca", ca);
 
@@ -131,7 +133,6 @@ public class AppController extends AppCompatActivity{
 
         SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, wrappedTrustManagers, null);
-
         return sslContext.getSocketFactory();
     }
 
