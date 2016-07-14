@@ -111,7 +111,7 @@ public class AppController extends AppCompatActivity{
         };
     }
 
-    private SSLSocketFactory getSSLSocketFactory()
+   private SSLSocketFactory getSSLSocketFactory()
             throws CertificateException, KeyStoreException, IOException, NoSuchAlgorithmException, KeyManagementException {
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         InputStream caInput = getResources().openRawResource(R.raw.server); // this cert file stored in \app\src\main\res\raw folder path

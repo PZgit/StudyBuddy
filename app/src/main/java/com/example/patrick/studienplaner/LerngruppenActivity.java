@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -18,7 +20,7 @@ import java.util.List;
 /**
  * Created by Patrick on 27.05.2016.
  */
-public class LerngruppenActivity extends Activity {
+public class LerngruppenActivity extends AppCompatActivity{
 
     private List<LerngruppenCardContent> LerngruppenList = LerngruppenCardContent.createData();
     private LerngruppenAdapter adapter;
@@ -37,6 +39,16 @@ public class LerngruppenActivity extends Activity {
         adapter = new LerngruppenAdapter(getBaseContext(), LerngruppenList);
 
         rv_lerngruppen.setAdapter(adapter);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog(view);
+            }
+
+        });
 
 
     }

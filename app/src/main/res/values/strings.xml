@@ -100,4 +100,12 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+    <string name="action_today">Heute</string>
+    <string name="action_day_view">Tagesansicht</string>
+    <string name="action_three_day_view">3 Tagesansicht</string>
+    <string name="action_week_view">Wochenansicht</string>
+
+    <string name="benutzer">Benutzer</string>
+    <string name="benutzer_fhws_com">benutzer@fhws.com</string>
 </resources>
