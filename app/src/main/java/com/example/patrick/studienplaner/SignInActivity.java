@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.patrick.studienplaner.model.data.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -17,10 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 
-/**
- * Activity to demonstrate basic retrieval of the Google user's ID, email address, and basic
- * profile.
- */
+
 public class SignInActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
@@ -58,6 +56,8 @@ public class SignInActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         // [END build_client]
+
+
     }
 
     @Override
@@ -94,6 +94,8 @@ public class SignInActivity extends AppCompatActivity implements
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            GoogleSignInAccount acct = result.getSignInAccount();
+            new User(acct.getId());
             handleSignInResult(result);
         }
     }
@@ -136,7 +138,6 @@ public class SignInActivity extends AppCompatActivity implements
             mProgressDialog.setMessage(getString(R.string.loading));
             mProgressDialog.setIndeterminate(true);
         }
-
         mProgressDialog.show();
     }
 

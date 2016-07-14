@@ -1,7 +1,5 @@
 package com.example.patrick.studienplaner;
 
-import com.example.patrick.studienplaner.model.SelfSigningClientBuilder;
-
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 

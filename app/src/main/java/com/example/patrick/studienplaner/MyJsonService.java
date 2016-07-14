@@ -8,4 +8,5 @@ import retrofit.http.POST;
 public interface MyJsonService{
 
     @POST("/events")
+    void
 }

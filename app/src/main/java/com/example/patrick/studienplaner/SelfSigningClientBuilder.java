@@ -1,4 +1,4 @@
-package com.example.patrick.studienplaner.model;
+package com.example.patrick.studienplaner;
 
 /**
  * Created by Julian on 14.07.2016.
