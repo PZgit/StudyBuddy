@@ -108,4 +108,5 @@
 
     <string name="benutzer">Benutzer</string>
     <string name="benutzer_fhws_com">benutzer@fhws.com</string>
+    <string name="loading">loading</string>
 </resources>

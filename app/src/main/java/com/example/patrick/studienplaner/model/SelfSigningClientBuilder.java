@@ -4,7 +4,11 @@ package com.example.patrick.studienplaner.model;
  * Created by Julian on 14.07.2016.
  */
 
+import android.content.Context;
+
+import com.example.patrick.studienplaner.MyApp;
 import com.example.patrick.studienplaner.R;
+import com.example.patrick.studienplaner.ServiceGenerator;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.InputStream;
@@ -19,6 +23,10 @@ import javax.net.ssl.TrustManagerFactory;
 
 @SuppressWarnings("unused")
 public class SelfSigningClientBuilder {
+
+
+
+
     @SuppressWarnings("null")
     public static OkHttpClient configureClient(final OkHttpClient client) {
         // Loading CAs from an InputStream
@@ -27,7 +35,7 @@ public class SelfSigningClientBuilder {
             cf = CertificateFactory.getInstance("X.509");
 
             Certificate ca;
-            try (InputStream cert = getBaseContext().getResources().openRawResource(R.raw.server)) {
+            try (InputStream cert = MyApp.getAppContext().getResources().openRawResource(R.raw.server)) {
                 ca = cf.generateCertificate(cert);
             }
 

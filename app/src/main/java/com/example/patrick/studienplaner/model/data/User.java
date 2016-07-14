@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -14,7 +15,6 @@ public class User {
     private String id;
 
     public User(){
-        this.id = "501102";
     }
     public User(String id){
         this.id = id;
@@ -29,9 +29,5 @@ public class User {
         return id;
     }
 
-    public void getIdAsJson(){
-        Gson gson = new Gson();
-        id = "{ \"id\":\"" + id + " \"}";
-    }
 
 }

@@ -55,6 +55,42 @@ public class AppController extends AppCompatActivity{
         return mInstance;
     }
 
+    /*String CLIENT_SECRET_FILE = "/path/to/client_secret.json";
+
+    // Exchange auth code for access token
+    GoogleClientSecrets clientSecrets =
+            GoogleClientSecrets.load(
+                    JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+    GoogleTokenResponse tokenResponse =
+            new GoogleAuthorizationCodeTokenRequest(
+                    new NetHttpTransport(),
+                    JacksonFactory.getDefaultInstance(),
+                    "https://www.googleapis.com/oauth2/v4/token",
+                    clientSecrets.getDetails().getClientId(),
+                    clientSecrets.getDetails().getClientSecret(),
+                    authCode,
+                    REDIRECT_URI)  // Specify the same redirect URI that you use with your web
+                    // app. If you don't have a web version of your app, you can
+                    // specify an empty string.
+                    .execute();
+
+    String accessToken = tokenResponse.getAccessToken();
+
+    // Use access token to call API
+    GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
+    Drive drive =
+            new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
+                    .setApplicationName("Auth Code Exchange Demo")
+                    .build();
+    File file = drive.files().get("appfolder").execute();
+
+    // Get profile info from ID token
+    GoogleIdToken idToken = tokenResponse.parseIdToken();
+    GoogleIdToken.Payload payload = idToken.getPayload();
+    String userId = payload.getSubject();  // Use this value as a key to identify a user.
+*/
+
+
     /*public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             HurlStack hurlStack = new HurlStack() {
