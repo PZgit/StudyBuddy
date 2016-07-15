@@ -1,4 +1,4 @@
-package com.example.patrick.studienplaner;
+package com.example.patrick.studienplaner.apiclient;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.patrick.studienplaner.R;
 import com.example.patrick.studienplaner.model.data.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -25,6 +26,7 @@ public class SignInActivity extends AppCompatActivity implements
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+    public User user = new User();
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
@@ -45,6 +47,7 @@ public class SignInActivity extends AppCompatActivity implements
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
                 .build();
         // [END configure_signin]
 
@@ -95,7 +98,6 @@ public class SignInActivity extends AppCompatActivity implements
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             GoogleSignInAccount acct = result.getSignInAccount();
-            new User(acct.getId());
             handleSignInResult(result);
         }
     }
@@ -107,7 +109,9 @@ public class SignInActivity extends AppCompatActivity implements
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            mStatusTextView.setText("Name: " + acct.getDisplayName());
+            user.setId(acct.getId());
+            user.setTok(acct.getIdToken());
+            mStatusTextView.setText(acct.getDisplayName());
             updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.

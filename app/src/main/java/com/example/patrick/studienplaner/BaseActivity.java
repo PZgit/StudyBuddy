@@ -11,8 +11,7 @@ import android.widget.Toast;
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
-import com.alamkanak.weekview.WeekViewEvent;import com.alamkanak.weekview.sample.R;
-
+import com.alamkanak.weekview.WeekViewEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -34,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        //setContentView(R.layout.activity_base);
 
         // Get a reference for the week view in the layout.
         mWeekView = (WeekView) findViewById(R.id.weekView);
@@ -60,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.navigation_main, menu);
         return true;
     }
 

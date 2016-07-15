@@ -6,7 +6,6 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
-import com.alamkanak.weekview.WeekViewLoader;
 import com.example.patrick.studienplaner.Dialogs.EventDialogFragment;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
@@ -32,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import com.example.patrick.studienplaner.apiclient.SignInActivity;
 import com.example.patrick.studienplaner.model.CalendarDayContent;
 
 
@@ -173,6 +172,8 @@ public class NavigationMain extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_slot3) {
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slot4) {
 

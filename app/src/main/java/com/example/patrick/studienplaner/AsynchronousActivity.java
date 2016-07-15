@@ -1,27 +1,19 @@
 package com.example.patrick.studienplaner;
 
-import android.content.Context;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekViewEvent;
-import com.alamkanak.weekview.sample.BaseActivity;import com.alamkanak.weekview.sample.R;import com.alamkanak.weekview.sample.apiclient.Event;
-import com.alamkanak.weekview.sample.apiclient.MyJsonService;
+//import com.alamkanak.weekview.sample.BaseActivity;import com.alamkanak.weekview.sample.R;import com.alamkanak.weekview.sample.apiclient.Event;
+import com.example.patrick.studienplaner.apiclient.MyJsonService;
+import com.example.patrick.studienplaner.apiclient.ServiceGenerator;
+import com.example.patrick.studienplaner.model.data.Event;
 
-import java.io.InputStream;
-import java.security.KeyStore;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
-import retrofit.client.OkClient;
 import retrofit.client.Response;
 import retrofit2.Retrofit;
 
@@ -83,10 +75,10 @@ public class AsynchronousActivity extends BaseActivity implements Callback<List<
     @Override
     public void failure(RetrofitError error) {
         error.printStackTrace();
-        Toast.makeText(this, R.string.async_error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Async Error", Toast.LENGTH_SHORT).show();
     }
 
-    public static RestAdapter createAdapter(Context context) {
+   /* public static RestAdapter createAdapter(Context context) {
         OkHttpClient okHttpClient = new OkHttpClient();
 
         // loading CAs from an InputStream
@@ -118,6 +110,6 @@ public class AsynchronousActivity extends BaseActivity implements Callback<List<
                 .setEndpoint("https://87.106.149.172:1337")
                 .setClient(new OkClient(okHttpClient))
                 .build();
-    }
+    } */
 
 }

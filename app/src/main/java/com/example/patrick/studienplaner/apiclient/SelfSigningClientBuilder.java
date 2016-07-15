@@ -1,14 +1,11 @@
-package com.example.patrick.studienplaner;
+package com.example.patrick.studienplaner.apiclient;
 
 /**
  * Created by Julian on 14.07.2016.
  */
 
-import android.content.Context;
-
 import com.example.patrick.studienplaner.MyApp;
 import com.example.patrick.studienplaner.R;
-import com.example.patrick.studienplaner.ServiceGenerator;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.InputStream;
@@ -23,9 +20,6 @@ import javax.net.ssl.TrustManagerFactory;
 
 @SuppressWarnings("unused")
 public class SelfSigningClientBuilder {
-
-
-
 
     @SuppressWarnings("null")
     public static OkHttpClient configureClient(final OkHttpClient client) {

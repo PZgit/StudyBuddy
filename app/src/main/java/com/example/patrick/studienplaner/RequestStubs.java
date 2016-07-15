@@ -16,7 +16,7 @@ import org.json.JSONObject;
 public class RequestStubs {
 
 
-    String url = "https://87.106.149.172:1337/";
+   /* String url = "https://87.106.149.172:1337/";
 
     //model for JsonObjectequest
     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -146,7 +146,7 @@ public class RequestStubs {
         }
     });
 
-    //
+    */
 
 
 }
