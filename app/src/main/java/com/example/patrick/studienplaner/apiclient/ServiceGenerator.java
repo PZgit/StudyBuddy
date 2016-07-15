@@ -40,7 +40,7 @@ public class ServiceGenerator {
         if (username != null && password != null) {
             // concatenate username and password with colon for authentication
             String credentials = username + ":" + password;
-            // create Base64 encodet string
+            // create Base64 encoded string
             final String basic =
                     "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
 
