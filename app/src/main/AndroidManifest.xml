@@ -15,13 +15,22 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="87.106.149.172:1337"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity android:name=".LG_DetailActivity"></activity>
         <activity android:name=".LerngruppenActivity"></activity>
-        <activity android:name=".apiclient.SignInActivity"></activity>
+        <activity android:name=".apiclient.SignInActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

@@ -111,4 +111,6 @@
     <string name="loading">loading</string>
 
     <string name="server_client_id">724121092251-jrunjvakgs13cebv33o6cts8r8s8qu7e.apps.googleusercontent.com</string>
+    <string name="client_key">9ku8sU_IB5OimV2IMiFm2xJF</string>
+    <string name="jwt_secret">thisissupersecret</string>
 </resources>

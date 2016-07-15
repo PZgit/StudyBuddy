@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "724121092251",
+    "project_id": "studiplan-1280"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724121092251:android:3ede1459dc7919bf",
+        "android_client_info": {
+          "package_name": "com.example.patrick.studienplaner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724121092251-kfk3co4417ufdgdcsh6ku11do1s20549.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.patrick.studienplaner",
+            "certificate_hash": "3524797FDB811AA56460F3775E037D6924ACA6EA"
+          }
+        },
+        {
+          "client_id": "724121092251-jrunjvakgs13cebv33o6cts8r8s8qu7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAANuLhUKxu4wcud_sLaUqARW2_DOCmD54"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
