@@ -37,15 +37,11 @@ dependencies {
 
     compile 'com.github.alamkanak:android-week-view:1.2.6'
 
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-
     compile 'com.squareup.retrofit:retrofit:1.9.0'
 
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
 
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'io.reactivex:rxandroid:1.0.1'
 
 

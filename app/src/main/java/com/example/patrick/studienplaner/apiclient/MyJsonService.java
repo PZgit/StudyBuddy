@@ -5,6 +5,7 @@ import com.example.patrick.studienplaner.model.data.Event;
 import java.util.List;
 
 import retrofit.Callback;
+import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 
@@ -18,5 +19,5 @@ public interface MyJsonService{
     void listEvents(Callback<List<Event>> eventsCallback);
 
     @POST("/events")
-    void postEvent(Event event);
+    void postEvent(@Body Event event);
 }

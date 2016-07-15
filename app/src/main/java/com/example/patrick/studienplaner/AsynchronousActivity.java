@@ -15,7 +15,6 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit2.Retrofit;
 
 /**
  * An example of how events can be fetched from network and be displayed on the week view.
@@ -33,14 +32,14 @@ public class AsynchronousActivity extends BaseActivity implements Callback<List<
 
         // Download events from network if it hasn't been done already. To understand how events are
         // downloaded using retrofit, visit http://square.github.io/retrofit
-        if (!calledNetwork) {
+        /*if (!calledNetwork) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://87.106.149.172:1337")
                     .build();
             MyJsonService service = retrofit.create(MyJsonService.class);
             service.listEvents(this);
             calledNetwork = true;
-        }
+        }*/
 
         // Return only the events that matches newYear and newMonth.
         List<WeekViewEvent> matchedEvents = new ArrayList<WeekViewEvent>();
