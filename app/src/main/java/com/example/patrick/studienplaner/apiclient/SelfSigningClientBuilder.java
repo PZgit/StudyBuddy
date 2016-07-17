@@ -39,7 +39,6 @@ public class SelfSigningClientBuilder {
             keyStore.load(null, null);
             keyStore.setCertificateEntry("ca", ca);
 
-
             // Creating a TrustManager that trusts the CAs in our KeyStore.
             String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
             TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);

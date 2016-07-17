@@ -1,7 +1,7 @@
 package com.example.patrick.studienplaner;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 
 public class EventDetailActivity extends Activity {
 

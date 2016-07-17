@@ -1,17 +1,13 @@
 package com.example.patrick.studienplaner;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 
-import com.example.patrick.studienplaner.Dialogs.EventDialogFragment;
 import com.example.patrick.studienplaner.Dialogs.LerngruppeDialogFragment;
 import com.example.patrick.studienplaner.model.LerngruppenModels.LerngruppenCardContent;
 
@@ -20,7 +16,7 @@ import java.util.List;
 /**
  * Created by Patrick on 27.05.2016.
  */
-public class LerngruppenActivity extends AppCompatActivity{
+public class LerngruppenActivity extends AppCompatActivity {
 
     private List<LerngruppenCardContent> LerngruppenList = LerngruppenCardContent.createData();
     private LerngruppenAdapter adapter;
@@ -31,7 +27,7 @@ public class LerngruppenActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rv_lerngruppen);
 
-        rv_lerngruppen=(RecyclerView)findViewById(R.id.rv_lerngruppen);
+        rv_lerngruppen = (RecyclerView) findViewById(R.id.rv_lerngruppen);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         //llm.setOrientation(LinearLayout.VERTICAL);
         rv_lerngruppen.setLayoutManager(llm);
@@ -52,7 +48,8 @@ public class LerngruppenActivity extends AppCompatActivity{
 
 
     }
-    public void showDialog(View view){
+
+    public void showDialog(View view) {
         FragmentManager manager = getFragmentManager();
         LerngruppeDialogFragment lerngruppeErstellenDialog = new LerngruppeDialogFragment();
         lerngruppeErstellenDialog.show(manager, "Lerngruppe erstellen");

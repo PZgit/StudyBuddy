@@ -12,6 +12,7 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -67,7 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         setupDateTimeInterpreter(id == R.id.action_week_view);
-        switch (id){
+        switch (id) {
             case R.id.action_today:
                 mWeekView.goToToday();
                 return true;
@@ -115,6 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     /**
      * Set up a date time interpreter which will show short date values when in week view and long
      * date values otherwise.
+     *
      * @param shortDate True if the date values should be short.
      */
     private void setupDateTimeInterpreter(final boolean shortDate) {
@@ -141,7 +143,7 @@ public abstract class BaseActivity extends AppCompatActivity implements WeekView
     }
 
     protected String getEventTitle(Calendar time) {
-        return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
+        return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH) + 1, time.get(Calendar.DAY_OF_MONTH));
     }
 
     @Override

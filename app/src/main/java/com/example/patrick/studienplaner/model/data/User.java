@@ -1,37 +1,81 @@
 package com.example.patrick.studienplaner.model.data;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Julian on 24.05.2016.
  */
 public class User {
 
-    private String id;
     private String tok;
 
-    public User() {
-    }
+    @SerializedName("id")
+    private String id;
 
-    public User(String id, String tok) {
-        this.id = id;
-        this.tok = tok;
+    @SerializedName("name")
+    private String name;
 
-    }
+    @SerializedName("given_name")
+    private String givenName;
 
+    @SerializedName("family_name")
+    private String familyName;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    @SerializedName("link")
+    private String link;
+
+    @SerializedName("picture")
+    private String picture;
+
+    @SerializedName("gender")
+    private String gender;
+
+    @SerializedName("locale")
+    private String locale;
 
     public String getId() {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
 
-    public void setTok(String tok){
+    public String getGivenName() {
+        return givenName;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public User() {
+    }
+
+
+    public void setTok(String tok) {
         this.tok = tok;
     }
 
-    public String getTok(){return tok;}
+    public String getTok() {
+        return tok;
+    }
 
 
 }

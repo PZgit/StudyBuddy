@@ -7,6 +7,13 @@ import com.google.gson.annotations.SerializedName;
  */
 public class AccessToken extends BaseResponse {
 
+    public AccessToken(String accessToken, String tokenType, Long expiresIn, String refreshToken) {
+        this.accessToken = accessToken;
+        this.tokenType = tokenType;
+        this.expiresIn = expiresIn;
+        this.refreshToken = refreshToken;
+    }
+
     @SerializedName("access_token")
     private String accessToken;
 
@@ -33,6 +40,22 @@ public class AccessToken extends BaseResponse {
 
     public String getRefreshToken() {
         return refreshToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public void setExpiresIn(Long expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
     @Override

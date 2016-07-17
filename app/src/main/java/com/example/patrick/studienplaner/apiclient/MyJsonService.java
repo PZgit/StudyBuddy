@@ -5,19 +5,21 @@ import com.example.patrick.studienplaner.model.data.Event;
 import java.util.List;
 
 import retrofit.Callback;
-import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.Path;
 
 /**
  * Created by Julian on 14.07.2016.
  */
-public interface MyJsonService{
+public interface MyJsonService {
 
+    String API_BASE_URL = "https://87.106.149.172:1337";
 
-    @GET("/1kpjf")
-    void listEvents(Callback<List<Event>> eventsCallback);
+    @GET("/users/{userId}/events")
+    void listEvents(@Path("userId") String userId, Callback<List<Event>> eventsCallback);
 
-    @POST("/events")
-    void postEvent(@Body Event event);
+    @POST("/users")
+    void postUser(String jwt);
+
 }

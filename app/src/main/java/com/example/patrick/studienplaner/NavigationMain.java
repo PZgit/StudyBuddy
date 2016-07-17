@@ -23,7 +23,6 @@ import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.example.patrick.studienplaner.Dialogs.EventDialogFragment;
 import com.example.patrick.studienplaner.apiclient.SignInActivity;
-import com.example.patrick.studienplaner.model.CalendarDayContent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

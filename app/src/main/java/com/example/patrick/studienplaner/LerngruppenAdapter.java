@@ -19,12 +19,12 @@ import java.util.List;
 /**
  * Created by Patrick on 27.05.2016.
  */
-public class LerngruppenAdapter extends RecyclerView.Adapter<LG_AbstractViewHolder<LerngruppenCardContent>>{
+public class LerngruppenAdapter extends RecyclerView.Adapter<LG_AbstractViewHolder<LerngruppenCardContent>> {
 
     public final Context context;
     private List<LerngruppenCardContent> LerngruppenList;
 
-    public LerngruppenAdapter(final Context context, final List<LerngruppenCardContent> lerngruppenList){
+    public LerngruppenAdapter(final Context context, final List<LerngruppenCardContent> lerngruppenList) {
         this.context = context;
         this.LerngruppenList = new ArrayList<>(lerngruppenList);
     }
@@ -52,10 +52,12 @@ public class LerngruppenAdapter extends RecyclerView.Adapter<LG_AbstractViewHold
                 throw new IllegalArgumentException("The viewType " + viewType + " is unknown");
         }
     }
+
     @Override
     public void onBindViewHolder(final LG_AbstractViewHolder<LerngruppenCardContent> holder, final int position) {
         holder.setData(LerngruppenList.get(position));
     }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);

@@ -21,12 +21,12 @@ import java.util.List;
 /**
  * Created by Patrick on 10.05.2016.
  */
-public class LG_DetailAdapter extends RecyclerView.Adapter<LG_DetailViewHolder<LG_DetailCardContent>>{
+public class LG_DetailAdapter extends RecyclerView.Adapter<LG_DetailViewHolder<LG_DetailCardContent>> {
 
     public final Context context;
     private List<LG_DetailCardContent> LGDetailList;
 
-    public LG_DetailAdapter(final Context context, final List<LG_DetailCardContent> LGDetailList){
+    public LG_DetailAdapter(final Context context, final List<LG_DetailCardContent> LGDetailList) {
         this.context = context;
         this.LGDetailList = new ArrayList<>(LGDetailList);
     }
@@ -57,10 +57,12 @@ public class LG_DetailAdapter extends RecyclerView.Adapter<LG_DetailViewHolder<L
                 throw new IllegalArgumentException("The viewType " + viewType + " is unknown");
         }
     }
+
     @Override
     public void onBindViewHolder(final LG_DetailViewHolder<LG_DetailCardContent> holder, final int position) {
-            holder.setData(LGDetailList.get(position));
+        holder.setData(LGDetailList.get(position));
     }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
