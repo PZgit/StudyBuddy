@@ -42,22 +42,6 @@ public class AccessToken extends BaseResponse {
         return refreshToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
-    }
-
-    public void setExpiresIn(Long expiresIn) {
-        this.expiresIn = expiresIn;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
     @Override
     public String toString() {
 

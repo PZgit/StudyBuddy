@@ -1,6 +1,5 @@
 package com.example.patrick.studienplaner.apiclient;
 
-import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
@@ -27,19 +26,4 @@ public class ServiceGenerator {
     }
 
 
-    public static <S> S createService(Class<S> serviceClass, final AccessToken token) {
-        if (token != null) {
-            builder.setRequestInterceptor(new RequestInterceptor() {
-                @Override
-                public void intercept(RequestFacade request) {
-                    //necessary? is header also being encoded?
-                    request.addHeader("Accept", "application/json");
-                    request.addHeader("Authorization", token.getTokenType() + " " + token.getAccessToken());
-                }
-            });
-        }
-
-        RestAdapter adapter = builder.build();
-        return adapter.create(serviceClass);
-    }
 }

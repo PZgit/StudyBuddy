@@ -71,7 +71,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         try {
             SharedPreferences settings = getPreferences(0);
 
-            GoogleAccountsService accService = ServiceGenerator.createService(GoogleAccountsService.class);
+            GoogleAccountsService accService = ServiceGenerator.createService(GoogleAccountsService.class, GoogleAccountsService.BASE_URL);
             UserCode userCode = accService.getUserCode(getString(R.string.client_id), "email profile");
 
             String verificationUrl = userCode.getVerificationUrl();
@@ -87,7 +87,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
             AccessToken refreshedAccessToken = accService.refreshAccessToken(getString(R.string.client_id), getString(R.string.client_secret), refreshToken, GoogleAccountsService.REFRESH_GRANT_TYPE);
 
-            GoogleApisService apisService = ServiceGenerator.createService(GoogleApisService.class);
+            GoogleApisService apisService = ServiceGenerator.createService(GoogleApisService.class, GoogleApisService.BASE_URL);
             User user = apisService.getProfile();
             editor.putString("user_id", user.getId());
             editor.commit();
