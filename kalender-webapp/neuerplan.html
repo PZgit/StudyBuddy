@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.css" type="text/css">
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-form/jquery.form.js"></script>
+    <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="tablestyles.css" type="text/css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+
+<form id="demoform" method="post" class="demoForm">
+
+    <div id="semesterzahl"></div>
+
+</form>
+
+
+
+<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Thema oder Veranstaltung auswählen</a>
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+    <li class="divider"></li>
+    <li><a href="#!">Allgemein</a></li>
+
+    <li><a href="#!">Weltherrschaft</a></li>
+    <li><a href="#!">Informatik Im Mittelalter</a></li>
+    <li><a href="#!">Paralelle und verteilte Systeme</a></li>
+    <li><a href="#!">Computer in der Bibel</a></li>
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+    var urls1 = [];
+    var kursid = [];
+    var urlone;
+
+
+    function jsubmit() {
+        var radio = document.getElementsByName('semesterwahl');
+        for (i = 0; i < radio.length; i++) {
+            if (radio[i].checked) {
+                urlone = i;
+            }
+        }
+
+
+        $.ajax({
+
+
+            url: urls1[urlone],
+
+            dataType: 'json',
+            type: 'get',
+            cache: false,
+
+            success: function (data) {
+
+                var baust11 = '<p> <input type="checkbox" id="veranstaltung';
+                var baust12 = '" /> <label for="veranstaltung';
+                var baust13 = '">';
+                var baust14 = '</label></p>';
+
+                $(data.modules).each(function (index) {
+                    var stringding = data.modules[index].label.toString();
+                    $("#veranstaltungen").append(baust11 + index + baust12 + index + baust13 + (stringding.substring(0, stringding.length - 11)) + baust14);
+                });
+
+
+            }
+
+        })
+
+    }
+
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal({
+        dismissible: true,
+    });
+
+    // Hole Semestername z.B: Sommersemester 2017. Holt das einzige und somit aktuelle Semester
+    $(document).ready(function(){
+        $.getJSON("http://backend2.applab.fhws.de:8080/fhwsapi/v1/lectures/", function(results){
+            $.each(results, function(index){
+                $("#semestername").append(results[index].label);
+            });
+        });
+
+
+    });
+
+
+    // Hole Liste Semesterzahl. Gemeint ist damit 1. Semester 2. Semester etc.
+    $.ajax({
+
+        url: 'http://backend2.applab.fhws.de:8080/fhwsapi/v1/lectures/ss16/BIN',
+        dataType: 'json',
+        type: 'get',
+        cache: false,
+
+        success: function(data) {
+
+            var baust1 = '<p><input class="with-gap col s12" name="semesterwahl" type="dropdown" id="sem';
+            var baust2 ='" value="';
+            var baust3 = '"/><label for="sem';
+            var baust4 ='">';
+            var baust5 = '</label></p>';
+            $("#semesterzahl").append()
+            $(data.sessions).each(function(index, value) {
+                $("#semesterzahl").append(baust1 + index + baust2 + index + baust3 + index + baust4 + data.sessions[index].label.toString() + baust5);
+            });
+            $(data.sessions).each(function(index, value) {
+                urls1.push((data.sessions[index].url.toString()));
+            });
+            //console.log(data.toString());
+        }
+
+    });
+</script>
+</body>
+</html>

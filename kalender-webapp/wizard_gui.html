@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <title>FHWS Kalender App</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="bower_components/Materialize/dist/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!--jQuery-->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <!--  Scripts for Materialize-->
+    <script src="bower_components/Materialize/dist/js/materialize.js"></script>
+    <script src="bower_components/Materialize/js/initial.js"></script>
+
+    <!--jwt creation-->
+    <script src="bower_components/crypto-js/crypto-js.js"></script>
+    <script src="jwtbuilder.js"></script>
+
+    <!--json-requests for api-->
+    <script src="jsoncom.js"></script>
+
+    <!--json-requests braun-->
+    <script src="brauncom.js"></script>
+
+    <!--de Datum Konvertierer-->
+    <script src="dateConverterPure.js"></script>
+
+    <!--tablelist-->
+    <script src="tablelist.js"></script>
+
+    <!--datatables-->
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/datatables/media/js/dataTables.material.min.js"></script>
+    <script src="bower_components/datatables/media/js/dataTables.select.min.js"></script>
+    <link href="bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="bower_components/datatables/media/css/dataTables.material.css" rel="stylesheet">
+    <link href="material.css" rel="stylesheet">
+    <!--datepicker-->
+    <script type="text/javascript" src="bower_components/calendarPicker/jquery.calendarPicker.js"></script>
+    <link href="bower_components/calendarPicker/jquery.calendarPicker.css" rel="stylesheet">
+
+
+
+
+
+
+    <script>
+        var uid;
+        var auth2;
+    </script>
+
+    <!--prerequisites Google-Signin-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script> -->
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+    </script>
+
+    <!--initialize googleauth object-->
+    <script>
+        function start() {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: '724121092251-jrunjvakgs13cebv33o6cts8r8s8qu7e.apps.googleusercontent.com',
+                    scope: 'profile email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar'
+                });
+            });
+        }
+    </script>
+
+
+
+
+
+</head>
+<body>
+<nav class="deep-orange lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="images/FHWS_Logo.png"></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<div class="section no-pad-bot" id="ueberschrift">
+    <div class="container">
+        <br><br>
+        <h1 class="header center orange-text">FHWS Kalender Projekt</h1>
+        <div class="row center">
+
+            <h5 class="header col s12 light">Eine Kalender Webapp für Studenten der FIW</h5>
+        </div>
+
+        <br><br>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+
+        <div class="row center">
+            <a class="btn waves-effect waves-light tooltipped deep-orange" onclick="getStudiengang()" data-tooltip="Stundenplan erstellen"><i class="material-icons left">cloud</i>Plan erstellen</a>
+            <button data-target="dialog-gruppe1" class="btn modal-trigger tooltipped deep-orange" data-delay="50" data-tooltip="Lerngruppe erstellen"> Lerngruppe erstellen</button>
+        </div>
+
+        <!--   Icon Section   -->
+
+        <div id="dialog-gruppe1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+
+                <h4>Lerngruppe erstellen</h4>
+
+                <p>Dieser Assistent hilft Ihnen eine Lerngruppe zu erstellen.</p>
+
+                <form action="#">
+
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Wie soll die Gruppe heißen? Beispiel: Algebra AG, Java für alle, Freiheit für Assembler "id="group_title" type="text" class="validate">
+                                    <label for="group_title">Gruppentitel</label>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button data-target="dialog-plan2" class="btn deep-orange waves-effect modal-trigger modal-close">weiter</button> <span> </span>
+                <a href="#!" class="btn modal-action deep-orange modal-close waves-effect">Abbrechen</a>
+
+            </div>
+        </div>
+
+
+        <div id="modalaskdelete" class="modal">
+            <div class="modal-content">
+
+                <p>Wirklich löschen?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+                <a href="#!" onclick="delrow()" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+            </div>
+        </div>
+
+
+        <div class="row">
+        <div class="lWizard">
+
+
+
+                <form name="formStudiengang">
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    <br><br>
+
+
+
+        <br><br>
+
+
+
+            <div id="boxy">
+
+
+
+
+            <div id="dsel2" class="center"></div>
+
+                <div id="tableanchor"></div>
+
+
+
+        </div></div></div>
+
+        <!--<table id="example" class="mdl-data-table responsive-table" cellspacing="0" width="100%">-->
+
+
+
+
+    <div class="section">
+
+    </div>
+</div>
+</div>
+<footer class="page-footer grey">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Über uns</h5>
+                <p class="grey-text text-lighten-4">Eine Kalender-App für Studenten der FHWS.</p>
+
+
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Settings</h5>
+                <ul>
+                    <li><a class="white-text" href="#!">Link 1</a></li>
+                    <li><a class="white-text" href="#!">Link 2</a></li>
+                    <li><a class="white-text" href="#!">Link 3</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="white-text" href="http://www.welearn.de/aktuelles/news.html">Fakultät Homepage</a></li>
+                    <li><a class="white-text" href="https://elearning.fhws.de/">e-Learning@FHWS</a></li>
+                    <li><a class="white-text" href="https://studentenportal.fhws.de/login">Studenten Portal</a></li>
+                    <li><a class="white-text" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="white-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    $('.modal-trigger').leanModal({
+        dismissible: true,
+    });
+
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+
+
+
+    $("#dsel2").calendarPicker({
+
+        callback:function(cal) {
+            $("#wtf").html("Selected date: " + cal.currentDate);
+
+            var x = new Date(cal.currentDate);
+            x.setHours(0);
+            x.setMinutes(0);
+            x.setSeconds(0);
+            x.setMilliseconds(0);
+            $('#example').DataTable().search(x.getTime()).draw();
+
+        }});
+
+
+</script>
+
+</body>
+</html>

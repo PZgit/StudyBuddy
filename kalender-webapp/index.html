@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--jwt creation-->
+    <script src="bower_components/crypto-js/crypto-js.js"></script>
+    <script src="jwtbuilder.js"></script>
+
+    <!--json-requests for api-->
+    <script src="jsoncom.js"></script>
+
+
+    <!--json-requests braun-->
+    <script src="brauncom.js"></script>
+
+
+    <script>
+        var uid;
+        var auth2;
+    </script>
+
+    <!--prerequisites Google-Signin-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+    </script>
+
+    <!--initialize googleauth object-->
+    <script>
+        function start() {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: '724121092251-jrunjvakgs13cebv33o6cts8r8s8qu7e.apps.googleusercontent.com',
+                    scope: 'profile email https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar'
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+<button id="signinButton">Neuen Benutzer anlegen</button>
+<script>
+    $('#signinButton').click(function () {
+        auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+        uid = auth2.currentUser.get().getId();
+    });
+</script>
+
+<button id="signinButtonNoCallback">Google-Signin</button>
+<script>
+    $('#signinButtonNoCallback').click(function () {
+        auth2.grantOfflineAccess({'redirect_uri': 'postmessage'});
+        uid = auth2.currentUser.get().getId();
+    });
+</script>
+
+<button id="idButton">UserID</button>
+<script>
+    $('#idButton').click(function () {
+        console.log('User-ID: ' + uid);
+        document.eventForm.userId.value = uid;
+    });
+</script>
+
+<button onclick="signOut();">Sign out</button>
+<script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+</script>
+
+<button onclick="getAllEventsForUser(uid)">Joe: get all events for user</button>
+<button onclick="getUserById()">Joe: get user by id</button>
+
+<!--<button onclick="mockEvent(uid)">Create Mockevent</button>-->
+
+<h2>test</h2>
+<form name="eventForm">
+    <input name="userId" type="text" disabled><br>
+    <input name="title" type="text" value="Test Event"><br>
+    <input name="startdate" type="text" value="2016-05-25T13:00:00"><br>
+    <input name="enddate" type="text" value="2016-05-25T14:00:00"><br>
+    <input name="lecturer" type="text" value="Prof. Dr. med Wurst"><br>
+    <input name="type" type="text" value="Vorlesung"><br>
+    <input name="building" type="text" value="SHL"><br>
+    <input name="room" type="text" value="H1.1"><br>
+    <input name="eventButton" type="button" value="go" onclick="postNewEventByForm(this.form)">
+</form>
+
+<!--<button onclick="postEvent(mockEvent(uid))">Joe: Create Mockevent</button>-->
+
+<p></p>
+
+
+<h2>Lecture-Wizard</h2>
+<div class="lWizard">
+    <div class="fStudiengang">
+        <form name="formStudiengang">
+            <input name="buttonStudiengang" type="button" value="Start" onclick="getStudiengang()">
+        </form>
+    </div>
+</div>
+
+
+<!--<h2>test</h2>
+<form name="testform">
+    <input name="testbox[]" type="checkbox" value="1">Button 1<br>
+    <input name="testbox[]" type="checkbox" value="2">Button 2<br>
+    <input name="testbox[]" type="checkbox" value="3">Button 3<br>
+    <input name="testbox[]" type="checkbox" value="4">Button 4<br>
+    <input name="testbutton" type="button" value="go" onclick="getChecked(this.form)">
+    <input name="testbutton2" type="button" value="Test" onclick="tsettest()">
+</form>-->
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="dateconverter.js"></script>
+</head>
+<body>
+<form name="dateform">
+    <p>De Datum</p>
+    <input type="text" name="dateMs" size="60" value="1467785700000"><br>
+    <input type="text" name="dateLong" size="60" value=""><br>
+    <input type="button" name="clicky" value="Convert this shit" onclick="convertDateForm(dateMs.value)">
+</form>
+<form name="currentDateForm">
+    <p>aktuelles Datum</p>
+    <input type="text" name="dateMs" size="60" value="Millisekunden"><br>
+    <input type="text" name="dateIso" size="60" value="ISO-Format"><br>
+    <input type="text" name="dateDe" size="60" value="Toitsches Format"><br>
+    <input type="text" name="dateLong" size="60" value="Roman"><br>
+    <input type="text" name="dateEpic" size="60" value="Epos"><br>
+    <input type="button" value="aktuelles Datum anzeigen" onclick="showDate()">
+</form>
+</body>
+</html>
