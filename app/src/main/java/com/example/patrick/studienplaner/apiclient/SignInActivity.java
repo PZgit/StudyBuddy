@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -97,13 +98,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         } catch (RetrofitError error) {
             if (error.getResponse() == null) {
-                //shizzl
                 error.printStackTrace();
             } else {
-                //(error.getResponse() + ", " + error.getResponse().getStatus()
+                //error.getResponse() + ", " + error.getResponse().getStatus();
             }
         } catch (JoseException e) {
-            //jose error
+            //jose erro
             e.printStackTrace();
         }
     }
