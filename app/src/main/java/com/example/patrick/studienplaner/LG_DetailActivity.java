@@ -26,7 +26,6 @@ public class LG_DetailActivity extends Activity {
 
         rv_lerngruppen = (RecyclerView) findViewById(R.id.rv_lerngruppen);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        //llm.setOrientation(LinearLayout.VERTICAL);
         rv_lerngruppen.setLayoutManager(llm);
 
         adapter = new LG_DetailAdapter(getBaseContext(), LGDetailList);

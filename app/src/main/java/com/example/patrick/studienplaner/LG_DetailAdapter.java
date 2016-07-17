@@ -41,7 +41,7 @@ public class LG_DetailAdapter extends RecyclerView.Adapter<LG_DetailViewHolder<L
     @Override
     public LG_DetailViewHolder<LG_DetailCardContent> onCreateViewHolder(ViewGroup parent, final int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = null;
+        View view;
 
         switch (viewType) {
             case Termin.VIEW_TYPE:
