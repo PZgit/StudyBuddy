@@ -46,6 +46,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -61,17 +66,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
     public void getTokensAndPostUser() throws NoSuchAlgorithmException {
         try {
             SharedPreferences settings = getPreferences(0);
 
-            GoogleAccountsService accService = ServiceGenerator.createService(GoogleAccountsService.class, GoogleAccountsService.BASE_URL);
+            GoogleAccountsService accService = ServiceGenerator.createService(GoogleAccountsService.class);
             UserCode userCode = accService.getUserCode(getString(R.string.client_id), "email profile");
 
             String verificationUrl = userCode.getVerificationUrl();
@@ -80,22 +79,19 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("access_token", accessToken.getAccessToken());
-            editor.putString("token_type", accessToken.getTokenType());
             editor.putLong("expires_in", accessToken.getExpiresIn());
             editor.putString("refresh_token", accessToken.getRefreshToken());
-            //HOUSTON! PROBLEM!
-
 
             String refreshToken = accessToken.getRefreshToken();
 
             AccessToken refreshedAccessToken = accService.refreshAccessToken(getString(R.string.client_id), getString(R.string.client_secret), refreshToken, GoogleAccountsService.REFRESH_GRANT_TYPE);
 
-            GoogleApisService apisService = ServiceGenerator.createService(GoogleApisService.class, GoogleApisService.BASE_URL, refreshedAccessToken);
+            GoogleApisService apisService = ServiceGenerator.createService(GoogleApisService.class);
             User user = apisService.getProfile();
             editor.putString("user_id", user.getId());
             editor.commit();
 
-            MyJsonService service = ServiceGenerator.createService(MyJsonService.class, MyJsonService.API_BASE_URL, accessToken);
+            MyJsonService service = ServiceGenerator.createService(MyJsonService.class);
             service.postUser(JWTMaker.createJWT("", "\"code\":" + userCode.getUserCode()));
 
 

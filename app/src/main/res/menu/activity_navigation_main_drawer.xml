@@ -10,26 +10,15 @@
             android:id="@+id/nav_slot2"
             android:icon="@android:drawable/ic_menu_add"
             android:title="@string/slot_2" />
-        <item
-            android:id="@+id/nav_slot3"
-            android:icon="@android:drawable/ic_menu_add"
-            android:title="@string/slot_3" />
-        <item
-            android:id="@+id/nav_slot4"
-            android:icon="@android:drawable/ic_menu_add"
-            android:title="@string/slot_4" />
+
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/google_plus">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_sign_in"
+                android:icon="@drawable/common_plus_signin_btn_icon_dark"
+                android:title="@string/sign_in" />
         </menu>
     </item>
 

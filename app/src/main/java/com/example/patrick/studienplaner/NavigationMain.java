@@ -2,6 +2,7 @@ package com.example.patrick.studienplaner;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,16 +23,27 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.example.patrick.studienplaner.Dialogs.EventDialogFragment;
+import com.example.patrick.studienplaner.apiclient.JWTMaker;
+import com.example.patrick.studienplaner.apiclient.MyJsonService;
+import com.example.patrick.studienplaner.apiclient.ServiceGenerator;
 import com.example.patrick.studienplaner.apiclient.SignInActivity;
+import com.example.patrick.studienplaner.model.data.Event;
 
+import org.jose4j.lang.JoseException;
+
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 public class NavigationMain extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
+        implements Callback<List<Event>>, NavigationView.OnNavigationItemSelectedListener,
         WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
 
     private static final int TYPE_DAY_VIEW = 1;
@@ -39,6 +51,8 @@ public class NavigationMain extends AppCompatActivity
     private static final int TYPE_WEEK_VIEW = 3;
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
+    private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+    boolean calledNetwork = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,16 +179,6 @@ public class NavigationMain extends AppCompatActivity
             Intent intent = new Intent(this, LerngruppenActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_slot3) {
-            Intent intent = new Intent(this, SignInActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_slot4) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -197,7 +201,7 @@ public class NavigationMain extends AppCompatActivity
             public String interpretDate(Calendar date) {
                 SimpleDateFormat weekdayNameFormat = new SimpleDateFormat("EEE", Locale.getDefault());
                 String weekday = weekdayNameFormat.format(date.getTime());
-                SimpleDateFormat format = new SimpleDateFormat(" M/d", Locale.getDefault());
+                SimpleDateFormat format = new SimpleDateFormat(" d.M", Locale.getDefault());
 
                 // All android api level do not have a standard way of getting the first letter of
                 // the week day name. Hence we get the first char programmatically.
@@ -209,7 +213,7 @@ public class NavigationMain extends AppCompatActivity
 
             @Override
             public String interpretTime(int hour) {
-                return hour > 11 ? (hour - 12) + " PM" : (hour == 0 ? "12 AM" : hour + " AM");
+                return hour + ":00";
             }
         });
     }
@@ -240,11 +244,33 @@ public class NavigationMain extends AppCompatActivity
 
 
     @Override
-    public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+    public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
 
-        // Populate the week view with some events.
-        List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+        // Populate the week view with events.
+        SharedPreferences settings = getPreferences(0);
+        if(!calledNetwork){
+            try {
+                String userId = settings.getString("user_id", "");
 
+                MyJsonService service = ServiceGenerator.createService(MyJsonService.class, MyJsonService.API_BASE_URL);
+                service.listEvents(JWTMaker.createJWT("", userId), userId, this);
+            }catch (JoseException e){
+                e.printStackTrace();
+            }catch (NoSuchAlgorithmException e){
+                e.printStackTrace();
+            }
+            calledNetwork = true;
+        }
+
+        // Return only the events that matches newYear and newMonth.
+        List<WeekViewEvent> matchedEvents = new ArrayList<WeekViewEvent>();
+        for (WeekViewEvent event : events) {
+            if (eventMatches(event, newYear, newMonth)) {
+                matchedEvents.add(event);
+            }
+        }
+        return matchedEvents;
+        /*
         Calendar startTime = Calendar.getInstance();
         startTime.set(Calendar.HOUR_OF_DAY, 3);
         startTime.set(Calendar.MINUTE, 0);
@@ -343,6 +369,25 @@ public class NavigationMain extends AppCompatActivity
         event.setColor(getResources().getColor(R.color.event_color_02));
         events.add(event);
 
-        return events;
+        return events;*/
+    }
+
+    private boolean eventMatches(WeekViewEvent event, int year, int month) {
+        return (event.getStartTime().get(Calendar.YEAR) == year && event.getStartTime().get(Calendar.MONTH) == month - 1) || (event.getEndTime().get(Calendar.YEAR) == year && event.getEndTime().get(Calendar.MONTH) == month - 1);
+    }
+
+    @Override
+    public void success(List<Event> events, Response response) {
+        this.events.clear();
+        for (Event event : events) {
+            this.events.add(event.toWeekViewEvent());
+        }
+        getWeekView().notifyDatasetChanged();
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+        error.printStackTrace();
+        Toast.makeText(this, R.string.async_error, Toast.LENGTH_SHORT).show();
     }
 }

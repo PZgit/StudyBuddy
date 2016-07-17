@@ -25,7 +25,7 @@ public class SelfSigningClientBuilder {
     public static OkHttpClient configureClient(final OkHttpClient client) {
         // Loading CAs from an InputStream
         try {
-            CertificateFactory cf = null;
+            CertificateFactory cf;
             cf = CertificateFactory.getInstance("X.509");
 
             Certificate ca;

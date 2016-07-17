@@ -31,7 +31,6 @@ import retrofit.client.Response;
 public class AsynchronousActivity extends BaseActivity implements Callback<List<Event>> {
 
     private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-    ServiceGenerator sg = new ServiceGenerator();
     boolean calledNetwork = false;
 
     @Override
@@ -42,8 +41,8 @@ public class AsynchronousActivity extends BaseActivity implements Callback<List<
                 String userId = settings.getString("user_id", "");
 
                 JWTMaker.createJWT("", userId);
-                MyJsonService service = ServiceGenerator.createService(MyJsonService.class, MyJsonService.API_BASE_URL);
-                service.listEvents(userId, this);
+                /*MyJsonService service = ServiceGenerator.createService(MyJsonService.class, MyJsonService.API_BASE_URL);
+                service.listEvents(userId, this);*/
             }catch (JoseException e){
                 e.printStackTrace();
             }catch (NoSuchAlgorithmException e){

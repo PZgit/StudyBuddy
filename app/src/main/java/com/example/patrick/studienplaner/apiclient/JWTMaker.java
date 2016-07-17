@@ -29,6 +29,8 @@ public class JWTMaker {
     public static String createJWT(String id, String payload) throws JoseException, NoSuchAlgorithmException {
 
         final SharedPreferences settings = MyApp.getAppContext().getSharedPreferences("UserFile", 0);
+        String accessToken = settings.getString("access_token", "");
+
 
         String secret = MyApp.getAppContext().getResources().getString(R.string.jwt_secret);
         byte[] stringBytes = secret.getBytes();
@@ -38,8 +40,8 @@ public class JWTMaker {
 
         jws.setKey(key);
         jws.setPayload(payload);
+        jws.setHeader("token", accessToken);
         jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA256);
-        jws.setDoKeyValidation(false);
         String signedJwt = jws.getCompactSerialization();
 
         JsonWebEncryption jwe = new JsonWebEncryption();
@@ -47,11 +49,10 @@ public class JWTMaker {
         jwe.setPayload(signedJwt);
         jwe.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.PBES2_HS256_A128KW);
         jwe.setContentEncryptionKey(stringBytes);
-        jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_256_GCM);
+        jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256);
         SecureRandom iv = SecureRandom.getInstance("SHA1PRNG");
-        jwe.setIv(iv.generateSeed(32));
+        jwe.setIv(iv.generateSeed(16));
         String encryptedJwt = jwe.getCompactSerialization();
-
 
         return encryptedJwt;
     }

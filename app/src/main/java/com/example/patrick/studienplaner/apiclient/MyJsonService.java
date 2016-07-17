@@ -5,7 +5,9 @@ import com.example.patrick.studienplaner.model.data.Event;
 import java.util.List;
 
 import retrofit.Callback;
+import retrofit.http.DELETE;
 import retrofit.http.GET;
+import retrofit.http.Header;
 import retrofit.http.POST;
 import retrofit.http.Path;
 
@@ -14,12 +16,18 @@ import retrofit.http.Path;
  */
 public interface MyJsonService {
 
-    String API_BASE_URL = "https://87.106.149.172:1337";
+    String API_BASE_URL = "https://localhost:1337";
 
     @GET("/users/{userId}/events")
-    void listEvents(@Path("userId") String userId, Callback<List<Event>> eventsCallback);
+    void listEvents(@Header("token") String jwt, @Path("userId") String userId, Callback<List<Event>> eventsCallback);
 
     @POST("/users")
-    void postUser(String jwt);
+    void postUser(@Header("token") String jwt);
+
+    @POST("/users/{userId}/events")
+    void postEvent(@Header("token") String jwt);
+
+    @GET("/studygroups")
+    void listStudyGroups(@Header("token") String jwt);
 
 }

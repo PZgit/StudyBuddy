@@ -17,10 +17,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="FHWS_light" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:colorPrimaryDark">@color/fhws_primary_dark_material_light</item>
-        <item name="android:colorAccent">@color/fhws_accent_material_light</item>
-        <item name="android:colorPrimary">@color/fhws_primary_material_light</item>
-    </style>
+
 
 </resources>

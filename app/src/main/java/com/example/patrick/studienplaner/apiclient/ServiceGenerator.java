@@ -9,19 +9,25 @@ import retrofit.client.OkClient;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "https://87.106.149.172:1337";
+    public static final String API_BASE_URL = "https://localhost:1337";
 
     public static RestAdapter.Builder builder = new RestAdapter.Builder()
             .setEndpoint(API_BASE_URL)
             .setClient(new OkClient(SelfSigningClientBuilder.createClient()));
 
-    public static <S> S createService(Class<S> serviceClass, String baseUrl) {
+    public static <S> S createService(Class<S> serviceClass) {
+        RestAdapter adapter = builder.build();
+        return adapter.create(serviceClass);
+    }
+
+    public static <S> S createService(Class<S> serviceClass, String baseUrl){
+        builder.setEndpoint(baseUrl);
         RestAdapter adapter = builder.build();
         return adapter.create(serviceClass);
     }
 
 
-    public static <S> S createService(Class<S> serviceClass, String baseUrl, final AccessToken token) {
+    public static <S> S createService(Class<S> serviceClass, final AccessToken token) {
         if (token != null) {
             builder.setRequestInterceptor(new RequestInterceptor() {
                 @Override
