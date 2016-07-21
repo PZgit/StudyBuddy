@@ -36,23 +36,6 @@ public class LerngruppenActivity extends AppCompatActivity {
 
         rv_lerngruppen.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog(view);
-            }
-
-        });
-
-
-    }
-
-    public void showDialog(View view) {
-        FragmentManager manager = getFragmentManager();
-        LerngruppeDialogFragment lerngruppeErstellenDialog = new LerngruppeDialogFragment();
-        lerngruppeErstellenDialog.show(manager, "Lerngruppe erstellen");
 
     }
 

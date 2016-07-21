@@ -179,7 +179,11 @@ public class NavigationMain extends AppCompatActivity
             Intent intent = new Intent(this, LerngruppenActivity.class);
             startActivity(intent);
 
-        }
+        }else if (id == R.id.nav_sign_in) {
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
+
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer != null) {
