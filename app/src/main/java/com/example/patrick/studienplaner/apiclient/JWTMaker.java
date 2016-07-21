@@ -33,28 +33,16 @@ public class JWTMaker {
 
 
         String secret = MyApp.getAppContext().getResources().getString(R.string.jwt_secret);
-        byte[] stringBytes = secret.getBytes();
-
-        Key key = new HmacKey(stringBytes);
         JsonWebSignature jws = new JsonWebSignature();
 
-        jws.setKey(key);
+        jws.setKey(new HmacKey(secret.getBytes()));
         jws.setPayload(payload);
-        jws.setHeader("token", accessToken);
-        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA256);
+        //jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA256);
+        jws.setHeader("alg", "HS256");
+        jws.setHeader("typ", "JWT");
         String signedJwt = jws.getCompactSerialization();
 
-        JsonWebEncryption jwe = new JsonWebEncryption();
-        jwe.setKey(key);
-        jwe.setPayload(signedJwt);
-        jwe.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.PBES2_HS256_A128KW);
-        jwe.setContentEncryptionKey(stringBytes);
-        jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256);
-        SecureRandom iv = SecureRandom.getInstance("SHA1PRNG");
-        jwe.setIv(iv.generateSeed(16));
-        String encryptedJwt = jwe.getCompactSerialization();
-
-        return encryptedJwt;
+        return signedJwt;
     }
 
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekViewEvent;
 import com.example.patrick.studienplaner.BaseActivity;
+import com.example.patrick.studienplaner.MyApp;
 import com.example.patrick.studienplaner.R;
 import com.example.patrick.studienplaner.model.data.Event;
 import com.example.patrick.studienplaner.model.data.User;
@@ -26,13 +27,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
-
-    public static final String FILENAME = "UserFile";
-    private static final String TAG = "SignInActivity";
-    private static final int RC_SIGN_IN = 9001;
-    private ProgressDialog mProgressDialog;
-    public static final String PREFS_NAME = "Preferences";
-    private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -69,7 +63,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     public void getTokensAndPostUser() throws NoSuchAlgorithmException {
         try {
-            SharedPreferences settings = getPreferences(0);
+            SharedPreferences settings = MyApp.getAppContext().getSharedPreferences("UserFile", 0);
 
             GoogleAccountsService accService = ServiceGenerator.createService(GoogleAccountsService.class, GoogleAccountsService.BASE_URL);
             UserCode userCode = accService.getUserCode(getString(R.string.client_id), "email profile");
@@ -93,7 +87,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             editor.commit();
 
             MyJsonService service = ServiceGenerator.createService(MyJsonService.class);
-            service.postUser(JWTMaker.createJWT("", "\"code\":" + userCode.getUserCode()));
 
 
         } catch (RetrofitError error) {
@@ -102,9 +95,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             } else {
                 //error.getResponse() + ", " + error.getResponse().getStatus();
             }
-        } catch (JoseException e) {
-            //jose erro
-            e.printStackTrace();
         }
     }
 

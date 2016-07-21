@@ -16,13 +16,13 @@ import retrofit.http.Path;
  */
 public interface MyJsonService {
 
-    String API_BASE_URL = "https://localhost:1337";
+    String API_BASE_URL = "https://10.31.74.126:1337";
 
     @GET("/users/{userId}/events")
     void listEvents(@Header("token") String jwt, @Path("userId") String userId, Callback<List<Event>> eventsCallback);
 
     @POST("/users")
-    void postUser(@Header("token") String jwt);
+    void postUser(@Header("token") String jwt, Callback<String> userUrlCallback);
 
     @POST("/users/{userId}/events")
     void postEvent(@Header("token") String jwt);

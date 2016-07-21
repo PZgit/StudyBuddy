@@ -27,6 +27,7 @@ import com.example.patrick.studienplaner.apiclient.JWTMaker;
 import com.example.patrick.studienplaner.apiclient.MyJsonService;
 import com.example.patrick.studienplaner.apiclient.ServiceGenerator;
 import com.example.patrick.studienplaner.apiclient.SignInActivity;
+import com.example.patrick.studienplaner.apiclient.SignInActivity2;
 import com.example.patrick.studienplaner.model.data.Event;
 
 import org.jose4j.lang.JoseException;
@@ -180,7 +181,7 @@ public class NavigationMain extends AppCompatActivity
             startActivity(intent);
 
         }else if (id == R.id.nav_sign_in) {
-        Intent intent = new Intent(this, SignInActivity.class);
+        Intent intent = new Intent(this, SignInActivity2.class);
         startActivity(intent);
 
     }

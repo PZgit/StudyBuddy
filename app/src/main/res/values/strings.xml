@@ -28,5 +28,6 @@
     <string name="client_id">724121092251-jrunjvakgs13cebv33o6cts8r8s8qu7e.apps.googleusercontent.com</string>
     <string name="client_secret">9ku8sU_IB5OimV2IMiFm2xJF</string>
     <string name="jwt_secret">gPcADw395jbmV5JrNrW280z0AqopVtfU</string>
+    <string name="signed_in_fmt">SignedIn</string>
 
 </resources>
