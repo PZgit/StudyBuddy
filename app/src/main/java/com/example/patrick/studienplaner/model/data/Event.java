@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 
 import com.alamkanak.weekview.WeekViewEvent;
+import com.google.android.gms.search.SearchAuth;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -14,7 +15,8 @@ import java.util.Date;
 
 
 public class Event {
-
+    @Expose @SerializedName("id")
+    private String id;
     @Expose @SerializedName("title")
     private String mName;
     @Expose @SerializedName("dayOfMonth")

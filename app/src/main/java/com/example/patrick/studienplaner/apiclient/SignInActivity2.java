@@ -12,11 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.patrick.studienplaner.MyApp;
 import com.example.patrick.studienplaner.R;
-import com.example.patrick.studienplaner.model.data.Event;
+import com.example.patrick.studienplaner.model.data.UserUrl;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -27,10 +26,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.gson.JsonObject;
 
 import org.jose4j.lang.JoseException;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -42,7 +43,7 @@ import retrofit.client.Response;
  */
 public class SignInActivity2 extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        View.OnClickListener, Callback<String> {
+        View.OnClickListener, Callback<UserUrl> {
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -167,11 +168,11 @@ public class SignInActivity2 extends AppCompatActivity implements
     // [END handleSignInResult]
 
     @Override
-    public void success(String userUrlCallback, Response response) {
-        SharedPreferences settings = MyApp.getAppContext().getSharedPreferences("UserFile", 0);
+    public void success(UserUrl userUrlCallback, Response response) {
+        /*SharedPreferences settings = MyApp.getAppContext().getSharedPreferences("UserFile", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("UserUrl", userUrlCallback);
-        editor.commit();
+        editor.putString("UserUrl", userUrlCallback.get(0));
+        editor.commit();*/
     }
 
     @Override
