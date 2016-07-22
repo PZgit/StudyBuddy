@@ -14,4 +14,23 @@ android:layout_height="wrap_content">
     android:layout_marginBottom="4dp"
     android:hint="Name des Events" />
 
+    <EditText
+        android:id="@+id/event_dauer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint="Dauer des Events"
+        android:layout_below="@+id/event_name"
+        android:inputType="time"/>
+
+    <TimePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker1"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/event_dauer" />
+
 </RelativeLayout>

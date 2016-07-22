@@ -53,6 +53,7 @@ public class NavigationMain extends AppCompatActivity
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
     private List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+    private ArrayList<WeekViewEvent> mNewEvents;
     boolean calledNetwork = false;
 
     @Override
@@ -367,6 +368,9 @@ public class NavigationMain extends AppCompatActivity
         event.setColor(getResources().getColor(R.color.event_color_02));
         events.add(event);
 
+        //ArrayList<WeekViewEvent> newEvents = getNewEvents(newYear, newMonth);
+       // events.addAll(newEvents);
+
 
 
         return events;
@@ -381,6 +385,36 @@ public class NavigationMain extends AppCompatActivity
         }
         return matchedEvents;*/
 
+    }
+
+    private ArrayList<WeekViewEvent> getNewEvents(int year, int month) {
+
+        // Get the starting point and ending point of the given month. We need this to find the
+        // events of the given month.
+        Calendar startOfMonth = Calendar.getInstance();
+        startOfMonth.set(Calendar.YEAR, year);
+        startOfMonth.set(Calendar.MONTH, month - 1);
+        startOfMonth.set(Calendar.DAY_OF_MONTH, 1);
+        startOfMonth.set(Calendar.HOUR_OF_DAY, 0);
+        startOfMonth.set(Calendar.MINUTE, 0);
+        startOfMonth.set(Calendar.SECOND, 0);
+        startOfMonth.set(Calendar.MILLISECOND, 0);
+        Calendar endOfMonth = (Calendar) startOfMonth.clone();
+        endOfMonth.set(Calendar.DAY_OF_MONTH, endOfMonth.getMaximum(Calendar.DAY_OF_MONTH));
+        endOfMonth.set(Calendar.HOUR_OF_DAY, 23);
+        endOfMonth.set(Calendar.MINUTE, 59);
+        endOfMonth.set(Calendar.SECOND, 59);
+
+        // Find the events that were added by tapping on empty view and that occurs in the given
+        // time frame.
+        ArrayList<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+        for (WeekViewEvent event : mNewEvents) {
+            if (event.getEndTime().getTimeInMillis() > startOfMonth.getTimeInMillis() &&
+                    event.getStartTime().getTimeInMillis() < endOfMonth.getTimeInMillis()) {
+                events.add(event);
+            }
+        }
+        return events;
     }
 
     private boolean eventMatches(WeekViewEvent event, int year, int month) {
