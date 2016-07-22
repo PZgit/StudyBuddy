@@ -18,9 +18,10 @@ public abstract class LerngruppenCardContent {
         LerngruppenList.add(new Lerngruppe("Lerngruppe222"));
         LerngruppenList.add(new Lerngruppe("Lerngruppe333"));
         LerngruppenList.add(new Lerngruppe("Lerngruppe444"));
-        LerngruppenList.add(new LerngruppeInvite("LerngruppeInvite111"));
-        LerngruppenList.add(new LerngruppeInvite("LerngruppeInvite222"));
-        LerngruppenList.add(new LerngruppeInvite("LerngruppeInvite333"));
+        LerngruppenList.add(new Lerngruppe("Lerngruppe555"));
+        LerngruppenList.add(new Lerngruppe("Lerngruppe666"));
+        LerngruppenList.add(new Lerngruppe("Lerngruppe777"));
+
 
         return LerngruppenList;
     }

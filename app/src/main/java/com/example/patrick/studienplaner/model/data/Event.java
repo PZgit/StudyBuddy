@@ -36,6 +36,14 @@ public class Event {
     @Expose @SerializedName("room")
     private String mRoom;
 
+    public Event(String mStartTime, String mEndTime, String mBuilding, String mRoom, String mName) {
+        this.mStartTime = mStartTime;
+        this.mEndTime = mEndTime;
+        this.mBuilding = mBuilding;
+        this.mRoom = mRoom;
+        this.mName = mName;
+    }
+
     public String getmRoom() {
         return mRoom;
     }

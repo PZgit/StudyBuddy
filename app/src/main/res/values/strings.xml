@@ -30,4 +30,7 @@
     <string name="jwt_secret">gPcADw395jbmV5JrNrW280z0AqopVtfU</string>
     <string name="signed_in_fmt">SignedIn</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
